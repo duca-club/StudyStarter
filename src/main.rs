@@ -1,15 +1,16 @@
-use studystarter::{Config, Unit, is_valid_unit};
-use std::{env, fs, path::PathBuf, process};
 mod file_checks;
 mod file_parse;
-use file_parse::parse_file;
-mod directory_construction;
-use clap::{Error, Parser, error::{ContextKind, ContextValue}};
 mod repo;
+mod directory_construction;
+
+use studystarter::{Config, is_valid_unit};
+use std::{path::PathBuf, process};
+use clap::Parser;
 use repo::get_unit_manifests;
+use tokio;
 
-
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), reqwest::Error> {
     //collect environment arguments
     //TODO! check the parsed root directory for illegal characters and validate it.
 
@@ -24,10 +25,11 @@ fn main() {
 
     let cfg: Config = Config { 
         output_dir: PathBuf::from(args.output_directory), 
-        units: get_unit_manifests(args.codes) 
+        units: get_unit_manifests(args.codes).await?
     };
 
 
+    Ok(())
 }
 
 

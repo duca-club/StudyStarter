@@ -1,12 +1,16 @@
-use std::{env, path::PathBuf};
+use std::path::PathBuf;
+
+#[derive(Debug)]
 pub struct Config {
     pub output_dir: PathBuf,
     pub units: Vec<Unit>,
 }
 
+#[derive(Debug)]
 pub struct Unit {
-    name: String,
-    manifest: Vec<String>
+    pub name: String,
+    pub manifest: Vec<String>,
+    pub readme: String,
 }
 
 const UnitCodes: [&str; 3] = [
