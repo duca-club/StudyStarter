@@ -3,7 +3,6 @@ use reqwest;
 use indicatif::{ProgressBar, ProgressStyle};
 use std::{cmp::min, time::Duration};
 use colored::Colorize;
-use std::path::PathBuf;
 
 
 
@@ -26,7 +25,7 @@ pub async fn get_unit_manifests(units_string: Vec<String>) -> Result<Vec<Unit>, 
         
         //Download manifest file
         let manifest_resp = reqwest::get(format!("https://github.com/duca-club/StudyStarter/raw/refs/heads/main/unit_manifests/{}/manifest.txt", unit)).await?;
-        let manifest: Vec<PathBuf> = manifest_resp.text().await?.split("\n").map(|x| PathBuf::from(x.to_owned())).collect();
+        let manifest: Vec<String> = manifest_resp.text().await?.split("\n").map(|x| x.to_owned()).collect();
         pb.println(format!("{} manifest.txt for {}", "Downloaded".green().bold(), unit.white().bold()));
         pb_position = min(pb_position+1, pb_max as u64);
         pb.set_position(pb_position);
