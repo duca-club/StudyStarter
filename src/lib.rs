@@ -9,7 +9,7 @@ pub struct Config {
 #[derive(Debug)]
 pub struct Unit {
     pub name: String,
-    pub manifest: Vec<String>,
+    pub manifest: Vec<PathBuf>,
     pub readme: String,
 }
 

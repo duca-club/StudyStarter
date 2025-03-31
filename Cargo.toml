@@ -10,6 +10,7 @@ authors = ["GhostUponAvon"]
 
 [dependencies]
 clap = { version = "4.5.34", features = ["derive"] }
+colored = "3.0.0"
 indicatif = "0.17.11"
 reqwest = "0.12.15"
 tokio = { version = "1.44.1", features = ["full"] }
