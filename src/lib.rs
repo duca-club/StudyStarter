@@ -13,10 +13,12 @@ pub struct Unit {
     pub readme: String,
 }
 
-const UnitCodes: [&str; 3] = [
+const UnitCodes: [&str; 5] = [
     "SIT221", 
     "SIT282", 
-    "SIT384"
+    "SIT384",
+    "SIT192",
+    "SIT202",
     ];
 
 pub fn is_valid_unit(unit: String) -> bool {
