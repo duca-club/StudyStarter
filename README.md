@@ -20,7 +20,7 @@ Then run the executable with the units that you want (See unit_manifests for a l
 ```
 
 ## Contributing
-StudyStarter would not be possible without student contributions. We need students to update the manifest files with the latest assignment numbers, unit codes, and write accurate README files. If you would like to contribute, no programming knowledge is required. Simply submit your changes to the manifests and wait for it to be verified by other students. If you would like to contribute to the code feel free to do so. If you would like to propose some ideas please join the DUCA Discord Server to communicate your ideas: https://discord.gg/7JPQk4xWCM.
+StudyStarter would not be possible without student contributions. We need students to update the manifest files with the latest assignment numbers, unit codes, and write accurate README files. If you would like to contribute, no programming knowledge is required. Simply submit your changes to the manifests and wait for it to be verified by other students. For instructions on how to write manifest.txt files, see the instructions for dirby: https://github.com/GhostUponAvon/dirby. If you would like to contribute to the code feel free to do so. If you would like to propose some ideas please join the DUCA Discord Server to communicate your ideas: https://discord.gg/7JPQk4xWCM.
 
 
 ## Credits And License
