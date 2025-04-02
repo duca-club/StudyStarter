@@ -14,7 +14,7 @@ pub struct Unit {
     pub readme: String,
 }
 
-const UnitCodes: [&str; 5] = [
+const UNIT_CODES: [&str; 5] = [
     "SIT221", 
     "SIT282", 
     "SIT384",
@@ -23,7 +23,7 @@ const UnitCodes: [&str; 5] = [
     ];
 
 pub fn is_valid_unit(unit: String) -> bool {
-    UnitCodes.contains(&unit.as_str())    
+    UNIT_CODES.contains(&unit.as_str())    
 }
 
 pub fn print_status<T,K,L>(x: T, y: K, message: L, ) where T: Display, K: Display, L: Display {

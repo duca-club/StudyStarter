@@ -1,4 +1,4 @@
-use std::{cmp::Ordering, io::Error, path::{self, Path, PathBuf}, process::Output, usize};
+use std::{cmp::Ordering, io::Error, path::{PathBuf}, usize};
 
 use studystarter::Config;
 

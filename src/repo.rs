@@ -1,7 +1,6 @@
 use studystarter::Unit;
-use reqwest;
 use indicatif::{ProgressBar, ProgressStyle};
-use std::{cmp::min, time::Duration};
+use std::time::Duration;
 use colored::Colorize;
 
 
@@ -37,8 +36,8 @@ pub async fn get_unit_manifests(units_string: Vec<String>) -> Result<Vec<Unit>, 
         // Create Unit object and save it to the vector
         units.push(Unit {
             name: unit,
-            manifest: manifest,
-            readme: readme
+            manifest,
+            readme
         });
         
     }
@@ -46,5 +45,5 @@ pub async fn get_unit_manifests(units_string: Vec<String>) -> Result<Vec<Unit>, 
     pb.set_message("Done!");
     pb.finish();
 
-    return Ok(units);
+    Ok(units)
 }

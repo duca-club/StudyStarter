@@ -1,5 +1,5 @@
 // will handle the actual directory manipulation
-use std::{fs::{create_dir_all, File}, io::{Error, Write}, path::PathBuf};
+use std::{fs::{create_dir_all, File}, io::Write, path::PathBuf};
 use anyhow::{self};
 use studystarter::Config;
 

@@ -4,8 +4,6 @@ mod repo;
 mod directory_construction;
 
 use colored::Colorize;
-use tokio;
-use anyhow;
 use clap::Parser;
 
 use std::{path::PathBuf, process};
@@ -36,14 +34,14 @@ async fn main() -> anyhow::Result<()> {
 
     print_status("2".green(), "6".yellow(), "Downloading Units");
     let cfg: Config = Config { 
-        output_dir: PathBuf::from(args.output_directory), 
+        output_dir: args.output_directory, 
         units: get_unit_manifests(args.codes).await?
     };
 
     print_status("3", "6", "Checking Integrity For Manifest Files");
     // make the error here more specific
     if !is_valid_config(&cfg) {
-        println!("{}: {}", "ERROR".bold().bright_red(), "Invalid syntax in manifest file");
+        println!("{}: Invalid syntax in manifest file", "ERROR".bold().bright_red());
         process::exit(0);
     }
 
