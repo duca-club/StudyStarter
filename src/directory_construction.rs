@@ -1,13 +1,27 @@
 // will handle the actual directory manipulation
-use std::{fs, path::PathBuf};
+use std::{fs::{create_dir_all, File}, io::{Error, Write}, path::PathBuf};
+use anyhow::{self};
+use studystarter::Config;
 
-pub fn build_fs_tree(fs_tree: Vec<PathBuf>) -> (std::io::Result<()>, String) {
+pub fn build_fs_tree(fs_tree: Vec<PathBuf>) -> anyhow::Result<(), > {
     for path in fs_tree {
         //Recursively create directories
-        let result = fs::create_dir_all(path.as_path());
-        if result.is_err() {
-            return (result, path.to_str().unwrap().to_owned());
-        }
+        create_dir_all(path.as_path())?;
     }
-    (Ok(()), "completed without detecting errors".to_owned())
+    Ok(())
+}
+
+pub fn generate_readmes(config: &Config) -> anyhow::Result<()> {
+
+    for unit in &config.units {
+        let mut path = config.output_dir.clone();
+        path.push(&unit.name);
+        path.push("README.md");
+
+        let mut file = File::create_new(path)?;
+
+        file.write_all(unit.readme.as_bytes())?;
+    }
+
+    Ok(())
 }

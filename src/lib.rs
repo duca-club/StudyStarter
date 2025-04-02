@@ -1,4 +1,5 @@
-use std::path::PathBuf;
+use std::{fmt::Display, path::PathBuf};
+use colored::Colorize;
 
 #[derive(Debug)]
 pub struct Config {
@@ -9,7 +10,7 @@ pub struct Config {
 #[derive(Debug)]
 pub struct Unit {
     pub name: String,
-    pub manifest: Vec<String>,
+    pub manifest: String,
     pub readme: String,
 }
 
@@ -23,4 +24,8 @@ const UnitCodes: [&str; 5] = [
 
 pub fn is_valid_unit(unit: String) -> bool {
     UnitCodes.contains(&unit.as_str())    
+}
+
+pub fn print_status<T,K,L>(x: T, y: K, message: L, ) where T: Display, K: Display, L: Display {
+    println!("{} {}", format!("[{}/{}]", x, y).bold(), message);
 }

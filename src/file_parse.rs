@@ -1,6 +1,27 @@
-use std::{cmp::Ordering, path::PathBuf, usize};
+use std::{cmp::Ordering, io::Error, path::{self, Path, PathBuf}, process::Output, usize};
 
-pub fn parse_file<'a>(file: &'a [String], root_dir: &'a str) -> Result<Vec<PathBuf>, &'a str> {
+use studystarter::Config;
+
+pub fn parse_config(config: &Config) -> Result<Vec<PathBuf>, Error> {
+    let mut paths: Vec<Vec<PathBuf>> = Vec::new();
+    
+
+    for unit in &config.units {
+        let mut output: PathBuf = config.output_dir.clone();
+        output.push(&unit.name);
+        paths.push(
+            parse_file(
+                &unit.manifest.split("\n").collect(),
+                &output 
+            
+            )
+        ?)
+    }
+
+    Ok(paths.concat())
+}
+
+pub fn parse_file(file: &Vec<&str>, root_dir: &PathBuf) -> Result<Vec<PathBuf>, Error> {
     let mut paths: Vec<PathBuf> = Vec::new();
     let mut current_path: PathBuf = PathBuf::new();
     current_path.push(root_dir);

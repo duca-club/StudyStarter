@@ -1,3 +1,5 @@
+use studystarter::Config;
+
 #[cfg(target_os = "linux")]
 const INVALID_FS_CHARS: &str = "/"; //characters forbidden in a linux folder or file name and for this program.
 
@@ -15,6 +17,16 @@ pub fn is_valid_file(file: &str) -> bool {
     //check for invalid file syntax
     if !is_valid_syntax(&file_lines) {
         return false;
+    }
+    true
+}
+
+pub fn is_valid_config(config: &Config) -> bool {
+    for unit in &config.units {
+        if !is_valid_file(unit.manifest.as_str()) {
+            return false
+        }
+        
     }
     true
 }
